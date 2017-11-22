@@ -20,9 +20,9 @@
 
 		Welcome to
 		<strong class="green">
-		    laravel5Admin
+		    lv5admin是使用laravel5.5开发的一个后台程序
 		    <small>(v1.0)</small>
-		</strong>, 欢迎使用本程序 <a href="https://github.com/duzhenxun/Laravel5Admin" target="_blank">获取最新版</a> QQ:5552123.
+		</strong>, 欢迎使用本程序 <a href="https://github.com/duzhenxun/lv5admin" target="_blank">获取最新版</a> QQ:5552123.
 	    </div>
 	</div>
     </div><!-- /.row -->
