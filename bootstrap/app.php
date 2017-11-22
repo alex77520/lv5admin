@@ -52,6 +52,7 @@ $app->singleton(
 |
 */
 //加载环境配置
+/**
 $app->detectEnvironment(function () {
     $environmentPath = __DIR__ . '/../.env';
     $setEnv = trim(file_get_contents($environmentPath));
@@ -63,5 +64,5 @@ $app->detectEnvironment(function () {
         }
     }
 });
-
+**/
 return $app;
