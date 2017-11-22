@@ -91,8 +91,10 @@ class AdminUserController extends Controller
             $admin_id = $id;
         } else {
             //添加
+            if(m('AdminUser')->where('name',$data['name'])->value('id')){
+                return false;
+            }
             $this->validate(request(), $this->M->rules, $this->M->messages);
-
             $data['password'] = bcrypt($data['password']);
             $rs = $this->M->create($data);
             $admin_id = $rs->id;

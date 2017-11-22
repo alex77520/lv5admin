@@ -14,12 +14,11 @@ class AdminUser extends Authenticatable
     protected $guarded = []; //不可以注入
 
     public $messages = [
-        'name.required' => '名不能为空',
+        'info.name.required' => '名不能为空',
     ];
     public $rules = [
-        'name' => 'required|string|unique:admin_user|max:100|min:2',
-        'password' => 'required|min:5|max:10',
-        'level' => 'required',
+        'info.name' => 'required|string|max:100|min:2',
+        'info.password' => 'required|min:5|max:10',
     ];
 
     /**
