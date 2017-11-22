@@ -54,15 +54,18 @@ class AdminLogController extends Controller
     public function info()
     {
         $info = $this->M->getInfo(request('id'));
-
         //上次信息
-        $last_id = $this->M->where([['id','<',$info['id']],['menu_id',$info['menu_id']]])->orderBy('id','desc')->value('id');
+        $where=[];
+        $where[]=['menu_id',$info->menu_id];
+        $where[]=['primary_id',$info->primary_id];
+        $where[] = ['id','<',$info->id];
+        $last_id = $this->M->where($where)->orderBy('id','desc')->value('id');
+
         if($last_id){
             $last_info = $this->M->getInfo($last_id);
         }else{
             $last_info=[];
         }
-
 
         $info->data = json_decode($info->data,true);
         if($info->data && $last_info->data){
@@ -73,7 +76,7 @@ class AdminLogController extends Controller
         return $this->view(compact('info','last_info'));
 
     }
-
+    //对比
     private function diffArr($info,$last_info,$key=''){
         static $arr;
         foreach($info as $k=>$v){

@@ -27,6 +27,7 @@ class AdminLog extends Model
             't1.ip',
             't1.admin_id',
             't1.created_at',
+            't1.primary_id',
             't2.c',
             't2.a',
             't2.name'

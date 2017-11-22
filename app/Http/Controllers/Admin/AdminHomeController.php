@@ -62,6 +62,7 @@ class AdminHomeController extends Controller
         }
 
         if (request('id')) {
+
             $this->validate(request(), [
                 'passwordOld' => 'required',
                 'password' => 'required|min:3|max:20|confirmed',
