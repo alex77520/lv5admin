@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.29-log)
 # Database: lv5admin
-# Generation Time: 2017-11-22 06:09:14 +0000
+# Generation Time: 2017-11-22 09:00:07 +0000
 # ************************************************************
 
 
@@ -43,7 +43,7 @@ LOCK TABLES `lv_admin_group` WRITE;
 
 INSERT INTO `lv_admin_group` (`id`, `name`, `description`, `menus`, `listorder`, `updated_at`, `created_at`, `admin_id`)
 VALUES
-	(1,'信息采集','信息添加权',NULL,0,1511320785,1504588542,1),
+	(1,'测试权限','测试权限','106,110,109,108,107,169,19,33,34,21,29,3,1,6,122,123,2,28',0,1511340264,1504588542,1),
 	(2,'管理员','所有权限','106,110,107,108,109,3,1,79,58,6,7,8,122,123,124,125,126,2,28,169,19,66,36,33,34,35,21,29,30,31',0,1511321796,1504588611,1);
 
 /*!40000 ALTER TABLE `lv_admin_group` ENABLE KEYS */;
@@ -70,7 +70,6 @@ INSERT INTO `lv_admin_group_access` (`admin_id`, `group_id`)
 VALUES
 	(2,1),
 	(1,2),
-	(2,2),
 	(3,2),
 	(4,3);
 
@@ -86,19 +85,38 @@ DROP TABLE IF EXISTS `lv_admin_log`;
 CREATE TABLE `lv_admin_log` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `menu_id` mediumint(8) NOT NULL DEFAULT '0' COMMENT '菜单id',
+  `primary_id` int(11) DEFAULT '0' COMMENT '表中主键ID',
   `querystring` varchar(255) DEFAULT '' COMMENT '参数',
   `data` text COMMENT 'POST数据',
   `ip` varchar(18) NOT NULL DEFAULT '',
   `admin_id` mediumint(8) NOT NULL DEFAULT '0',
   `created_at` int(11) NOT NULL DEFAULT '0',
   `updated_at` int(11) NOT NULL DEFAULT '0',
-  `primary_id` int(11) DEFAULT '0' COMMENT '表中主键ID',
   PRIMARY KEY (`id`),
   KEY `idx_menu_id` (`menu_id`),
   KEY `idx_admin_id` (`admin_id`),
   KEY `idx_created_at` (`created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `lv_admin_log` WRITE;
+/*!40000 ALTER TABLE `lv_admin_log` DISABLE KEYS */;
+
+INSERT INTO `lv_admin_log` (`id`, `menu_id`, `primary_id`, `querystring`, `data`, `ip`, `admin_id`, `created_at`, `updated_at`)
+VALUES
+	(1,35,2,NULL,'{\"_token\":\"nyRugO7XUOz4bikganB1plsPoinktMo9uKjd53Zb\",\"id\":\"2\",\"info\":{\"realname\":\"12341\",\"mobile\":null,\"level\":null,\"status\":null}}','127.0.0.1',1,1511339375,1511339375),
+	(2,35,2,NULL,'{\"_token\":\"nyRugO7XUOz4bikganB1plsPoinktMo9uKjd53Zb\",\"id\":\"2\",\"info\":{\"realname\":\"12341\",\"mobile\":\"1234\",\"level\":\"1\",\"status\":\"1\"},\"group_ids\":[\"1\"]}','127.0.0.1',1,1511339384,1511339384),
+	(3,35,2,NULL,'{\"_token\":\"nyRugO7XUOz4bikganB1plsPoinktMo9uKjd53Zb\",\"id\":\"2\",\"info\":{\"realname\":\"\\u6d4b\\u8bd5\\u8d26\\u53f7\",\"mobile\":\"18888873646\",\"level\":\"1\",\"status\":\"1\"},\"group_ids\":[\"1\"]}','127.0.0.1',1,1511340114,1511340114),
+	(4,31,1,NULL,'{\"_token\":\"nyRugO7XUOz4bikganB1plsPoinktMo9uKjd53Zb\",\"id\":\"1\",\"menus\":\"106,110,109,108,107,169,19,33,34,21,29,6,123,2,28\",\"name\":\"\\u6d4b\\u8bd5\\u6743\\u9650\",\"description\":\"\\u6d4b\\u8bd5\\u6743\\u9650\"}','127.0.0.1',1,1511340153,1511340153),
+	(5,36,0,'id=2',NULL,'127.0.0.1',1,1511340184,1511340184),
+	(6,36,2,'id=2','{\"_token\":\"nyRugO7XUOz4bikganB1plsPoinktMo9uKjd53Zb\",\"id\":\"2\",\"password\":\"testtest\",\"password_confirmation\":\"testtest\"}','127.0.0.1',1,1511340192,1511340192),
+	(7,31,1,NULL,'{\"_token\":\"nyRugO7XUOz4bikganB1plsPoinktMo9uKjd53Zb\",\"id\":\"1\",\"menus\":\"106,110,109,108,107,169,19,33,34,21,29,3,1,6,122,123,2,28\",\"name\":\"\\u6d4b\\u8bd5\\u6743\\u9650\",\"description\":\"\\u6d4b\\u8bd5\\u6743\\u9650\"}','127.0.0.1',1,1511340264,1511340264),
+	(8,109,3,NULL,'{\"_token\":\"nyRugO7XUOz4bikganB1plsPoinktMo9uKjd53Zb\",\"id\":\"3\",\"info\":{\"mobile\":\"18341234124\",\"realname\":\"1234\",\"sex\":\"1\",\"status\":\"1\"}}','127.0.0.1',2,1511340283,1511340283),
+	(9,109,4,NULL,'{\"_token\":\"nyRugO7XUOz4bikganB1plsPoinktMo9uKjd53Zb\",\"id\":\"4\",\"info\":{\"mobile\":\"18888873647\",\"realname\":\"\\u675c\\u632f\\u8bad\",\"sex\":\"2\",\"status\":\"1\"}}','127.0.0.1',2,1511340288,1511340288),
+	(10,109,4,NULL,'{\"_token\":\"nyRugO7XUOz4bikganB1plsPoinktMo9uKjd53Zb\",\"id\":\"4\",\"info\":{\"mobile\":\"18888873647\",\"realname\":\"\\u675c\\u632f\\u8bad\",\"sex\":\"1\",\"status\":\"1\"}}','127.0.0.1',2,1511340790,1511340790),
+	(11,109,3,NULL,'{\"_token\":\"nyRugO7XUOz4bikganB1plsPoinktMo9uKjd53Zb\",\"id\":\"3\",\"info\":{\"mobile\":\"18341234124\",\"realname\":\"1234\",\"sex\":\"2\",\"status\":\"1\"}}','127.0.0.1',2,1511340809,1511340809);
+
+/*!40000 ALTER TABLE `lv_admin_log` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table lv_admin_menu
@@ -198,7 +216,8 @@ LOCK TABLES `lv_admin_user` WRITE;
 
 INSERT INTO `lv_admin_user` (`id`, `name`, `password`, `email`, `mobile`, `realname`, `city_id`, `store_id`, `position_id`, `level`, `status`, `remember_token`, `updated_at`, `created_at`, `is_super`)
 VALUES
-	(1,'admin','$2y$10$Jzh7fZk0lsbkk.34YWSrXOXYVxf3ktcUUN6kWI6.TaNHkH70b08He','system@100iec.com','18888873646','杜振训',1,NULL,1,1,1,'HrfpKeTQ9vDGHRUCoeBUBTjjYJqgscdlmhWZrtYQljZ8BYVGN7xPQM9oHOMu',1511322443,0,1);
+	(1,'admin','$2y$10$0ZbfbtNTozAEKkB.xa1BkejOb0ssYVWS.spu6pf09HleMmCkHdFty','system@100iec.com','18888873646','杜振训',1,NULL,1,1,1,'xOn9ORMHRCdJAIqzGHh8sHNCaFybvn1xkaxbiEUdhiEWnLTL9IOVkTdWeTyq',1511340241,0,1),
+	(2,'test','$2y$10$2Rucnfk92ndIKgFVYEhbX.yfW3JpL.xh5a5mai3o5pWcH9FcIwiuK','','18888873646','测试账号',1,NULL,0,1,1,'NHr3bPXUE9WHjVvFLIqYRAfa0lpHSg7cbpErpWIFGdtoVq6oiZDrFk4cmqNx',1511340192,1511339326,0);
 
 /*!40000 ALTER TABLE `lv_admin_user` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -241,8 +260,8 @@ INSERT INTO `lv_member` (`id`, `city_id`, `mobile`, `realname`, `sex`, `status`,
 VALUES
 	(1,'1','1234','1234',1,1,1505631909,1505631909,'','',0,0,1,'','',1,0,0,0,0),
 	(2,'1','18888873646','12341',1,1,1506319674,1506319674,'','',0,0,1,'','',1,0,0,0,0),
-	(3,'1','18341234124','1234',1,1,1506332174,1506332174,'','',0,0,1,'','',1,0,0,0,0),
-	(4,NULL,'18888873647','杜振训',1,1,1511322153,1507819720,'','',0,0,1,'','',1,0,0,0,0);
+	(3,'1','18341234124','1234',2,1,1511340809,1506332174,'','',0,0,1,'','',1,0,0,0,0),
+	(4,NULL,'18888873647','杜振训',1,1,1511340790,1507819720,'','',0,0,1,'','',1,0,0,0,0);
 
 /*!40000 ALTER TABLE `lv_member` ENABLE KEYS */;
 UNLOCK TABLES;
