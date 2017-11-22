@@ -1,0 +1,13 @@
+.DS_Store
+/nbproject/*
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/.idea
+/.vagrant
+Homestead.json
+Homestead.yaml
+npm-debug.log
+nbproject/*
+/vendor/*
